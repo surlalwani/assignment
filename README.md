@@ -6,6 +6,23 @@
 - Docker installed
 - Terraform installed
 
+## Terraform Configuration Overview (`main.tf`)
+
+Key Highlights:
+- Uses Ubuntu 22.04 LTS as the base AMI
+- Configures EC2 instance with:
+  - Encrypted EBS root volume
+  - KMS key for volume encryption
+  - IAM role for ECR image pull access
+- Creates a security group allowing:
+  - SSH access (port 22)
+  - Flask application access (port 8081)
+- Automated user data script for:
+  - Docker installation
+  - AWS CLI setup
+  - ECR image pull
+  - Container deployment
+
 ## Deployment Steps
 
 ### 1. Build and Push Docker Image
@@ -33,8 +50,8 @@ terraform init
 # Preview the changes that will be made
 terraform plan -var="region=us-west-2" -var="ecr_repo_url=<YOUR_ECR_REPO_URL>" -var="ecr_image_uri=<YOUR_ECR_IMAGE_URI>"
 
-# Apply Terraform configuration
-terraform apply -var="region=YOUR_REGION" -var="ecr_repo_url=<YOUR_ECR_REPO_URL>" -var="ecr_image_uri=<YOUR_ECR_IMAGE_URI>"
+# Apply the configuration
+terraform apply -var="region=us-west-2" -var="ecr_repo_url=<YOUR_ECR_REPO_URL>" -var="ecr_image_uri=<YOUR_ECR_IMAGE_URI>"
 ```
 
 ### 3. Access the API
@@ -56,3 +73,4 @@ terraform destroy
 - Replace `<ECR_REPO_URL>` with your actual Amazon ECR repository URL
 - Replace `<ECR_IMAGE_URI>` with the full URI of your Docker image in ECR
 - Modify the region and other variables as needed for your specific setup
+- Always run `terraform plan` before `terraform apply` to review proposed changes
