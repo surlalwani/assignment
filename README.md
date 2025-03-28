@@ -69,8 +69,10 @@ terraform destroy
 ```
 
 ## Notes
+<img width="1223" alt="Screenshot 2025-03-28 at 5 47 33 PM" src="https://github.com/user-attachments/assets/e292425e-0d58-4439-8132-758f0c9ec9d4" />
 
 - Replace `<ECR_REPO_URL>` with your actual Amazon ECR repository URL
 - Replace `<ECR_IMAGE_URI>` with the full URI of your Docker image in ECR
 - Modify the region and other variables as needed for your specific setup
 - Always run `terraform plan` before `terraform apply` to review proposed changes
+
