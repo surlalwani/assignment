@@ -30,6 +30,9 @@ docker push <ECR_IMAGE_URI>
 # Initialize Terraform
 terraform init
 
+# Preview the changes that will be made
+terraform plan -var="region=us-west-2" -var="ecr_repo_url=<YOUR_ECR_REPO_URL>" -var="ecr_image_uri=<YOUR_ECR_IMAGE_URI>"
+
 # Apply Terraform configuration
 terraform apply -var="region=YOUR_REGION" -var="ecr_repo_url=<YOUR_ECR_REPO_URL>" -var="ecr_image_uri=<YOUR_ECR_IMAGE_URI>"
 ```
